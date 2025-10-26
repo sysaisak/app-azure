@@ -3,14 +3,14 @@
 // Autor: Hugo Hincapié
 
 // ======== CONFIGURACIÓN MYSQL ========
-$mysql_host = "mysql-prd-hincapie.mysql.database.azure.com";
+$mysql_host = "10.2.2.0";
 $mysql_user = "adminmysql";
 $mysql_pass = "Zz308681377..";
 $mysql_db   = "mysql";
 $mysql_port = 3306;
 
 // ======= CONFIGURACIÓN POSTGRESQL =======
-$pg_host = "postgres-prd-hincapie.postgres.database.azure.com";
+$pg_host = "10.2.3.0";
 $pg_user = "adminpostgres";
 $pg_pass = "Zz308681377..";
 $pg_db   = "postgres";
