@@ -3,14 +3,14 @@
 // Autor: Hugo Hincapié
 
 // ======== CONFIGURACIÓN MYSQL ========
-$mysql_host = "10.2.2.0";
+$mysql_host = "10.2.2.4";
 $mysql_user = "adminmysql";
 $mysql_pass = "Zz308681377..";
 $mysql_db   = "mysql";
 $mysql_port = 3306;
 
 // ======= CONFIGURACIÓN POSTGRESQL =======
-$pg_host = "10.2.3.0";
+$pg_host = "10.2.3.4";
 $pg_user = "adminpostgres";
 $pg_pass = "Zz308681377..";
 $pg_db   = "postgres";
