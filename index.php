@@ -4,17 +4,18 @@
 
 // ======== CONFIGURACIÓN MYSQL ========
 $mysql_host = "mysql-prd-hincapie.mysql.database.azure.com";
-$mysql_user = "adminmysql";       // El usuario exacto que creaste en Azure
-$mysql_pass = "Zz308681377..";   // Tu contraseña real
-$mysql_db   = "mysql";            // O la base que creaste
+$mysql_user = "adminmysql";
+$mysql_pass = "Zz308681377..";
+$mysql_db   = "mysql";
 $mysql_port = 3306;
 
 // ======= CONFIGURACIÓN POSTGRESQL =======
 $pg_host = "postgres-prd-hincapie.postgres.database.azure.com";
-$pg_user   = "adminpostgres";     // El usuario exacto del servidor PostgreSQL
-$pg_pass   = "Zz308681377..";    // Tu contraseña real
-$pg_db     = "postgres";
-$pg_port   = 5432;
+$pg_user = "adminpostgres";
+$pg_pass = "Zz308681377..";
+$pg_db   = "postgres";
+$pg_port = 5432;
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -92,9 +93,13 @@ $pg_port   = 5432;
     <h2>Prueba de conexión a MySQL</h2>
     <?php
     try {
-        $conn_mysql = new mysqli($mysql_server, $mysql_user, $mysql_pass, $mysql_db, $mysql_port);
-        if ($conn_mysql->connect_error) {
-            throw new Exception("❌ Error: " . $conn_mysql->connect_error);
+        // Conexión MySQL
+        $conn_mysql = mysqli_init();
+        mysqli_ssl_set($conn_mysql, NULL, NULL, NULL, NULL, NULL);
+        mysqli_real_connect($conn_mysql, $mysql_host, $mysql_user, $mysql_pass, $mysql_db, $mysql_port);
+
+        if (mysqli_connect_errno()) {
+            throw new Exception("❌ Error: " . mysqli_connect_error());
         } else {
             echo "<div class='result ok'>✅ Conectado correctamente a MySQL</div>";
         }
@@ -106,11 +111,11 @@ $pg_port   = 5432;
     <h2>Prueba de conexión a PostgreSQL</h2>
     <?php
     try {
-        $pg_conn = pg_connect("host=$pg_server port=$pg_port dbname=$pg_db user=$pg_user password=$pg_pass");
+        $pg_conn = pg_connect("host=$pg_host port=$pg_port dbname=$pg_db user=$pg_user password=$pg_pass sslmode=require");
         if ($pg_conn) {
-            echo "<div class='result ok'> Conectado correctamente a PostgreSQL</div>";
+            echo "<div class='result ok'>✅ Conectado correctamente a PostgreSQL</div>";
         } else {
-            throw new Exception(" Error al conectar con PostgreSQL");
+            throw new Exception("❌ Error al conectar con PostgreSQL");
         }
     } catch (Exception $e) {
         echo "<div class='result fail'>".$e->getMessage()."</div>";
